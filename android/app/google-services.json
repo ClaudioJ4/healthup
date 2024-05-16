@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "775917246848",
+    "project_id": "health-up-9fa76",
+    "storage_bucket": "health-up-9fa76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775917246848:android:e2f273ea326fa6bd1d0965",
+        "android_client_info": {
+          "package_name": "com.example.healthup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmpfJQHy5KlMMSPXTDyyVSxpeIa1esNZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
