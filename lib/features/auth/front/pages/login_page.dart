@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             FormContainerWidget(
               controller: _passwordController,
-              hintText: "Password",
+              hintText: "Senha",
               isPasswordField: true,
             ),
             SizedBox(
@@ -105,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Don't have an account?",
+                  "Ainda não tem conta?",
                   style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   },
                   child: Text(
-                    "Sign Up",
+                    "Cadastre-se",
                     style: TextStyle(
                       color: Colors.purple,
                       fontWeight: FontWeight.bold,

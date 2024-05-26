@@ -1,7 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+// ignore_for_file: prefer_const_constructors
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:healthup/features/app/calories_tracker/screens/calorie_tracker_screen.dart';
 import 'package:healthup/features/auth/front/pages/login_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -9,6 +9,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(
@@ -17,22 +19,31 @@ class HomePage extends StatelessWidget {
           right: 40,
         ),
         color: Color.fromARGB(255, 40, 38, 40),
-        child: ListView(
+        child: Column(
           children: [
             Text(
               "Home Page",
               style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold),
+                color: Colors.white,
+                fontSize: 60,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            SizedBox(
-              height: 30,
+            SizedBox(height: 30),
+            Expanded(
+              child: userId != null
+                  ? CalorieTrackerScreen(userId: userId)
+                  : Center(
+                      child: Text(
+                        'No data available',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
             ),
             GestureDetector(
               onTap: () {
                 FirebaseAuth.instance.signOut();
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => LoginPage(),
@@ -50,9 +61,10 @@ class HomePage extends StatelessWidget {
                   child: Text(
                     "Sign Out",
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

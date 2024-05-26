@@ -65,7 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             FormContainerWidget(
               controller: _usernameController,
-              hintText: "Username",
+              hintText: "Nome de Usuário",
               isPasswordField: false,
             ),
             SizedBox(
@@ -81,7 +81,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             FormContainerWidget(
               controller: _passwordController,
-              hintText: "Password",
+              hintText: "Senha",
               isPasswordField: true,
             ),
             SizedBox(
@@ -98,7 +98,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 child: Center(
                   child: Text(
-                    "Sign Up",
+                    "Cadastro",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 30,
@@ -114,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Already have an account?",
+                  "Já possui uma conta?",
                   style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(
@@ -128,7 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           (route) => false);
                     },
                     child: Text(
-                      "Login",
+                      "Fazer Login",
                       style: TextStyle(
                         color: Colors.purple,
                         fontWeight: FontWeight.bold,
