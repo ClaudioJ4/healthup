@@ -6,6 +6,7 @@ import 'package:healthup/features/auth/firebase_auth_implementation/firebase_aut
 import 'package:healthup/features/auth/front/pages/home_page.dart';
 import 'package:healthup/features/auth/front/pages/sign_up_page.dart';
 import 'package:healthup/features/auth/front/widgets/form_container_w.dart';
+import 'package:healthup/constants/front_constants.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -38,28 +39,16 @@ class _LoginPageState extends State<LoginPage> {
           left: 40,
           right: 40,
         ),
-        color: Color.fromARGB(255, 40, 38, 40),
+        color: AppColors.backgroundColor,
         child: ListView(
           children: [
             SizedBox(
-              width: 128,
-              height: 128,
-              child: Image.asset("assets/iconapp.jpg"),
+              width: 192,
+              height: 192,
+              child: Image.asset("assets/ic_launcher.png"),
             ),
             SizedBox(
-              height: 30,
-            ),
-            Text(
-              "Login",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 40,
-              ),
-            ),
-            SizedBox(
-              height: 30,
+              height: 200,
             ),
             FormContainerWidget(
               controller: _emailController,
@@ -75,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
               isPasswordField: true,
             ),
             SizedBox(
-              height: 40,
+              height: 70,
             ),
             GestureDetector(
               onTap: _signIn,
@@ -83,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 69, 3, 110),
+                  color: AppColors.primaryColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
@@ -122,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text(
                     "Cadastre-se",
                     style: TextStyle(
-                      color: Colors.purple,
+                      color: AppColors.primaryColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

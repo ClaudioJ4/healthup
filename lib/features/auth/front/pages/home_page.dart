@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healthup/features/app/calories_tracker/screens/calorie_tracker_screen.dart';
 import 'package:healthup/features/auth/front/pages/login_page.dart';
+import 'package:healthup/constants/front_constants.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -18,7 +19,7 @@ class HomePage extends StatelessWidget {
           left: 40,
           right: 40,
         ),
-        color: Color.fromARGB(255, 40, 38, 40),
+        color: AppColors.backgroundColor,
         child: Column(
           children: [
             Text(
@@ -54,7 +55,7 @@ class HomePage extends StatelessWidget {
                 height: 45,
                 width: 100,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 69, 3, 110),
+                  color: AppColors.primaryColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(

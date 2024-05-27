@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'add_meal_screen.dart';
 import 'change_goal_screen.dart';
 import 'view_meals_screen.dart';
+import 'package:healthup/constants/front_constants.dart';
 
 class CalorieTrackerScreen extends StatelessWidget {
   final String userId;
@@ -52,10 +53,10 @@ class CalorieTrackerScreen extends StatelessWidget {
             SizedBox(height: 10),
             LinearProgressIndicator(
               value: progress,
-              backgroundColor: Colors.grey[800],
-              color: Colors.blue,
+              backgroundColor: Color.fromARGB(255, 209, 209, 209),
+              color: AppColors.primaryColor,
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(

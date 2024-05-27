@@ -6,6 +6,7 @@ import 'package:healthup/features/auth/front/pages/home_page.dart';
 import 'package:healthup/features/auth/front/pages/login_page.dart';
 import 'package:healthup/features/auth/front/widgets/form_container_w.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:healthup/constants/front_constants.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -40,19 +41,19 @@ class _SignUpPageState extends State<SignUpPage> {
           left: 40,
           right: 40,
         ),
-        color: Color.fromARGB(255, 40, 38, 40),
+        color: AppColors.backgroundColor,
         child: ListView(
           children: [
             SizedBox(
               width: 128,
               height: 128,
-              child: Image.asset("assets/iconapp.jpg"),
+              child: Image.asset("assets/ic_launcher.png"),
             ),
             SizedBox(
-              height: 30,
+              height: 100,
             ),
             Text(
-              "Sign Up",
+              "Crie a conta",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
@@ -85,7 +86,7 @@ class _SignUpPageState extends State<SignUpPage> {
               isPasswordField: true,
             ),
             SizedBox(
-              height: 40,
+              height: 70,
             ),
             GestureDetector(
               onTap: _signUp,
@@ -93,7 +94,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 width: double.infinity,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 69, 3, 110),
+                  color: AppColors.primaryColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
@@ -130,7 +131,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Text(
                       "Fazer Login",
                       style: TextStyle(
-                        color: Colors.purple,
+                        color: AppColors.primaryColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ))

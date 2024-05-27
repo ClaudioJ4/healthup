@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:healthup/constants/front_constants.dart';
 
 class ChangeGoalScreen extends StatelessWidget {
   final String userId;
