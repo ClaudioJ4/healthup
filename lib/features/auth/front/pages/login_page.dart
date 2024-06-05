@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
           left: 40,
           right: 40,
         ),
-        color: AppColors.backgroundColor,
+        color: AppColors.secondBackgroundColor,
         child: ListView(
           children: [
             SizedBox(

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, sized_box_for_whitespace
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -51,47 +51,86 @@ class CalorieTrackerScreen extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             SizedBox(height: 10),
-            LinearProgressIndicator(
-              value: progress,
-              backgroundColor: Color.fromARGB(255, 209, 209, 209),
-              color: AppColors.primaryColor,
+            Container(
+              height: 40,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.white,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: LinearProgressIndicator(
+                value: progress,
+                backgroundColor: AppColors.backgroundColor,
+                color: AppColors.primaryColor,
+              ),
             ),
             SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddMealScreen(userId: userId),
-                  ),
-                );
-              },
-              child: Text('Adicionar Refeição'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ChangeGoalScreen(userId: userId),
-                  ),
-                );
-              },
-              child: Text('Alterar Meta'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ViewMealsScreen(
-                      userId: userId,
-                      date: currentDate,
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddMealScreen(userId: userId),
+                          ),
+                        );
+                      },
+                      icon: Icon(Icons.add, color: Colors.white),
+                      label: Text('Adicionar Refeição'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.buttonColor,
+                        foregroundColor: Colors.white,
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ChangeGoalScreen(userId: userId),
+                          ),
+                        );
+                      },
+                      icon: Icon(Icons.edit, color: Colors.white),
+                      label: Text('Alterar Meta'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.buttonColor,
+                        foregroundColor: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Center(
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ViewMealsScreen(
+                            userId: userId,
+                            date: currentDate,
+                          ),
+                        ),
+                      );
+                    },
+                    icon: Icon(Icons.visibility, color: Colors.white),
+                    label: Text('Visualizar Refeições'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.buttonColor,
+                      foregroundColor: Colors.white,
                     ),
                   ),
-                );
-              },
-              child: Text('Visualizar Refeições'),
+                ),
+              ],
             ),
           ],
         );

@@ -41,7 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
           left: 40,
           right: 40,
         ),
-        color: AppColors.backgroundColor,
+        color: AppColors.secondBackgroundColor,
         child: ListView(
           children: [
             SizedBox(

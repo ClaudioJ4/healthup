@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: Color.fromARGB(255, 40, 38, 40),
       body: Center(
         child: Text(
-          "Health Up!",
+          "Health UP!",
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
