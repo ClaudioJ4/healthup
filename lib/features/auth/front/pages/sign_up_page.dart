@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields, use_build_context_synchronously, avoid_print
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields, use_build_context_synchronously, avoid_print, deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:healthup/features/auth/firebase_auth_implementation/firebase_auth_services.dart';
@@ -6,6 +6,7 @@ import 'package:healthup/features/auth/front/pages/home_page.dart';
 import 'package:healthup/features/auth/front/pages/login_page.dart';
 import 'package:healthup/features/auth/front/widgets/form_container_w.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:healthup/constants/front_constants.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -99,7 +100,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 child: Center(
                   child: Text(
-                    "Cadastro",
+                    "Cadastrar",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 30,
@@ -122,19 +123,20 @@ class _SignUpPageState extends State<SignUpPage> {
                   width: 5,
                 ),
                 GestureDetector(
-                    onTap: () {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                          (route) => false);
-                    },
-                    child: Text(
-                      "Fazer Login",
-                      style: TextStyle(
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ))
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        (route) => false);
+                  },
+                  child: Text(
+                    "Faça Login aqui",
+                    style: TextStyle(
+                      color: AppColors.primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )
               ],
             ),
           ],
@@ -148,17 +150,53 @@ class _SignUpPageState extends State<SignUpPage> {
       isSigningUp = true;
     });
 
+    String username = _usernameController.text;
     String email = _emailController.text;
     String password = _passwordController.text;
 
-    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+    try {
+      User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
-    if (user != null) {
-      print("User was created");
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
-    } else {
-      print("Error");
+      if (user != null) {
+        print("User created: ${user.uid}");
+
+        await user.updateProfile(displayName: username);
+        await user.reload();
+        user = FirebaseAuth.instance.currentUser;
+
+        if (user != null) {
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .set({
+            'username': username,
+            'email': email,
+            'password': password,
+          });
+
+          print("User data added to Firestore");
+
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: email,
+            password: password,
+          );
+
+          print("User signed in automatically");
+
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        } else {
+          print("Error: User is null after reload");
+        }
+      } else {
+        print("Error: User creation failed");
+      }
+    } catch (e) {
+      print("Error during sign up: $e");
+    } finally {
+      setState(() {
+        isSigningUp = false;
+      });
     }
   }
 }

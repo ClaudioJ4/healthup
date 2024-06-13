@@ -20,16 +20,15 @@ class AddMealScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        backgroundColor:
-            AppColors.secondBackgroundColor, // Cor cinza para a AppBar
+        backgroundColor: AppColors.secondBackgroundColor,
         title: Text(
           'Adicionar refeição',
           style: TextStyle(color: Colors.white),
         ),
-        iconTheme: IconThemeData(color: Colors.white), // Título da AppBar
+        iconTheme: IconThemeData(color: Colors.white),
         actions: [
           IconButton(
-            icon: Icon(Icons.logout), // Ícone de logout
+            icon: Icon(Icons.logout),
             onPressed: () {
               FirebaseAuth.instance.signOut();
               Navigator.pushReplacement(
@@ -45,9 +44,9 @@ class AddMealScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Container(
-          padding: const EdgeInsets.all(16.0), // Padding dentro do container
+          padding: const EdgeInsets.all(16.0),
           decoration: BoxDecoration(
-            color: AppColors.secondBackgroundColor, // Cor do container cinza
+            color: AppColors.secondBackgroundColor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(

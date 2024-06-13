@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   },
                   child: Text(
-                    "Cadastre-se",
+                    "Cadastre-se aqui",
                     style: TextStyle(
                       color: AppColors.primaryColor,
                       fontWeight: FontWeight.bold,

@@ -19,7 +19,7 @@ Future<void> addMeal(String userId, Meal meal) async {
   } else {
     await dailyCaloriesRef.set({
       'totalCalories': meal.calories,
-      'goalCalories': 2000, // default value, can be adjusted later
+      'goalCalories': 2000,
     });
   }
 }

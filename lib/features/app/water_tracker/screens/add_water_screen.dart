@@ -1,33 +1,33 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sort_child_properties_last
 
-import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:healthup/constants/front_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:healthup/features/app/water_tracker/services/water_service.dart';
+import 'package:healthup/constants/front_constants.dart';
 import 'package:healthup/features/auth/front/pages/login_page.dart';
 
-class ChangeGoalScreen extends StatelessWidget {
+class AddWaterScreen extends StatelessWidget {
   final String userId;
+  final WaterService waterService;
 
-  ChangeGoalScreen({required this.userId});
+  AddWaterScreen({required this.userId}) : waterService = WaterService(userId);
 
-  final TextEditingController _goalController = TextEditingController();
+  final TextEditingController _mlController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        backgroundColor:
-            AppColors.secondBackgroundColor, // Cor cinza para a AppBar
+        backgroundColor: AppColors.secondBackgroundColor,
         title: Text(
-          'Alterar meta de calorias',
+          'Adicionar água',
           style: TextStyle(color: Colors.white),
         ),
-        iconTheme: IconThemeData(color: Colors.white), // Título da AppBar
+        iconTheme: IconThemeData(color: Colors.white),
         actions: [
           IconButton(
-            icon: Icon(Icons.logout), // Ícone de logout
+            icon: Icon(Icons.logout),
             onPressed: () {
               FirebaseAuth.instance.signOut();
               Navigator.pushReplacement(
@@ -51,16 +51,16 @@ class ChangeGoalScreen extends StatelessWidget {
           child: Column(
             children: [
               TextField(
-                controller: _goalController,
+                controller: _mlController,
                 decoration: InputDecoration(
-                  labelText: 'Nova Meta de Calorias',
+                  labelText: 'Quantidade em ml',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.primaryColor),
+                    borderSide: BorderSide(color: AppColors.secondaryColor),
                   ),
                 ),
                 style: TextStyle(color: Colors.white),
@@ -69,16 +69,11 @@ class ChangeGoalScreen extends StatelessWidget {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  final newGoal = int.parse(_goalController.text);
-                  FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(userId)
-                      .collection('dailyCalories')
-                      .doc(DateTime.now().toIso8601String().substring(0, 10))
-                      .set({'goalCalories': newGoal}, SetOptions(merge: true));
+                  final int ml = int.parse(_mlController.text);
+                  waterService.addWater(ml);
                   Navigator.pop(context);
                 },
-                child: Text('Alterar Meta'),
+                child: Text('Adicionar Água'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.buttonColor,
                   foregroundColor: Colors.white,
