@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print, use_build_context_synchronously, unused_element, prefer_final_fields
+// ignore_for_file: avoid_print, use_build_context_synchronously, prefer_const_constructors, prefer_final_fields
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +7,7 @@ import 'package:healthup/features/auth/front/pages/home_page.dart';
 import 'package:healthup/features/auth/front/pages/sign_up_page.dart';
 import 'package:healthup/features/auth/front/widgets/form_container_w.dart';
 import 'package:healthup/constants/front_constants.dart';
+import 'package:healthup/features/auth/front/pages/about_page.dart'; // Import the new AboutPage
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -40,81 +41,100 @@ class _LoginPageState extends State<LoginPage> {
           right: 40,
         ),
         color: AppColors.secondBackgroundColor,
-        child: ListView(
+        child: Stack(
           children: [
-            SizedBox(
-              width: 192,
-              height: 192,
-              child: Image.asset("assets/ic_launcher.png"),
-            ),
-            SizedBox(
-              height: 200,
-            ),
-            FormContainerWidget(
-              controller: _emailController,
-              hintText: "Email",
-              isPasswordField: false,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            FormContainerWidget(
-              controller: _passwordController,
-              hintText: "Senha",
-              isPasswordField: true,
-            ),
-            SizedBox(
-              height: 70,
-            ),
-            GestureDetector(
-              onTap: _signIn,
-              child: Container(
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    "Login",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            ListView(
               children: [
-                Text(
-                  "Ainda não tem conta?",
-                  style: TextStyle(color: Colors.white),
+                SizedBox(
+                  width: 192,
+                  height: 192,
+                  child: Image.asset("assets/ic_launcher.png"),
                 ),
                 SizedBox(
-                  width: 5,
+                  height: 200,
+                ),
+                FormContainerWidget(
+                  controller: _emailController,
+                  hintText: "Email",
+                  isPasswordField: false,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                FormContainerWidget(
+                  controller: _passwordController,
+                  hintText: "Senha",
+                  isPasswordField: true,
+                ),
+                SizedBox(
+                  height: 70,
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()),
-                      (route) => false,
-                    );
-                  },
-                  child: Text(
-                    "Cadastre-se aqui",
-                    style: TextStyle(
+                  onTap: _signIn,
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
                       color: AppColors.primaryColor,
-                      fontWeight: FontWeight.bold,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Ainda não tem conta?",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUpPage()),
+                          (route) => false,
+                        );
+                      },
+                      child: Text(
+                        "Cadastre-se aqui",
+                        style: TextStyle(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.help_outline,
+                    color: AppColors.primaryColor,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AboutPage()),
+                    );
+                  },
                 ),
               ],
             ),

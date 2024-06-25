@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:healthup/features/auth/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:healthup/features/auth/front/pages/about_page.dart';
 import 'package:healthup/features/auth/front/pages/home_page.dart';
 import 'package:healthup/features/auth/front/pages/login_page.dart';
 import 'package:healthup/features/auth/front/widgets/form_container_w.dart';
@@ -138,6 +139,21 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 )
               ],
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.help_outline,
+                color: AppColors.primaryColor,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AboutPage()),
+                );
+              },
             ),
           ],
         ),

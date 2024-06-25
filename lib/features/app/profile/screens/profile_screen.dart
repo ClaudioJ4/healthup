@@ -1,8 +1,8 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
-
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, library_private_types_in_public_api, unnecessary_cast, avoid_function_literals_in_foreach_calls, avoid_print, prefer_const_constructors_in_immutables, sized_box_for_whitespace
 import 'package:flutter/material.dart';
 import 'package:healthup/constants/front_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:healthup/features/app/profile/screens/chart_screen.dart';
 import 'package:healthup/features/auth/front/pages/login_page.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -69,6 +69,48 @@ class ProfilePage extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
+              SizedBox(height: 50),
+              Container(
+                height: 400,
+                child: FirestoreBarChart(userId: user?.uid ?? ''),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 20,
+                    height: 20,
+                    color: AppColors.primaryColor,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Calorias',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                    width: 20,
+                    height: 20,
+                    color: AppColors.secondaryColor,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Água',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

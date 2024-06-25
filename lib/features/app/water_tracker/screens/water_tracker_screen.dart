@@ -49,7 +49,7 @@ class WaterTrackerScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Água Consumida: $totalWaterIntake ml / $goalWaterIntake ml',
+              'Água Ingerida: $totalWaterIntake ml / $goalWaterIntake ml',
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             SizedBox(height: 10),

@@ -47,7 +47,7 @@ class CalorieTrackerScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Calorias Consumidas: $totalCalories / $goalCalories',
+              'Calorias Ingeridas: $totalCalories cal / $goalCalories cal',
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             SizedBox(height: 10),
