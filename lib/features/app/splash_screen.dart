@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, annotate_overrides
 
 import 'package:flutter/material.dart';
+import 'package:healthup/constants/front_constants.dart';
 
 class SplashScreen extends StatefulWidget {
   final Widget? child;
@@ -13,7 +14,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 0), () {
+    Future.delayed(Duration(seconds: 3), () {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => widget.child!),
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 40, 38, 40),
+      backgroundColor: AppColors.secondBackgroundColor,
       body: Center(
         child: Text(
           "Health UP!",

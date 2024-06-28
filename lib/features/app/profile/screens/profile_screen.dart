@@ -69,9 +69,9 @@ class ProfilePage extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 20),
               Container(
-                height: 400,
+                height: 330,
                 child: FirestoreBarChart(userId: user?.uid ?? ''),
               ),
               SizedBox(

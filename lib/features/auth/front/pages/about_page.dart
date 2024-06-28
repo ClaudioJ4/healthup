@@ -43,7 +43,7 @@ class AboutPage extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              'Cláudio Confessor\nPedro Eduardo\nOrientado por: Ceres Germano',
+              'Cláudio José Dantas Gomes Confessor\nPedro Eduardo Morais Ribeiro da Silva\nCeres Germanna Braga Morais',
               style: TextStyle(color: Colors.white),
             ),
             SizedBox(height: 16),

@@ -39,7 +39,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(
-          top: 60,
+          top: 40,
           left: 40,
           right: 40,
         ),
@@ -52,7 +52,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Image.asset("assets/ic_launcher.png"),
             ),
             SizedBox(
-              height: 100,
+              height: 30,
             ),
             Text(
               "Crie a conta",
@@ -88,7 +88,7 @@ class _SignUpPageState extends State<SignUpPage> {
               isPasswordField: true,
             ),
             SizedBox(
-              height: 70,
+              height: 50,
             ),
             GestureDetector(
               onTap: _signUp,

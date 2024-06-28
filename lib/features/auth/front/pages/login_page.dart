@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Image.asset("assets/ic_launcher.png"),
                 ),
                 SizedBox(
-                  height: 200,
+                  height: 50,
                 ),
                 FormContainerWidget(
                   controller: _emailController,

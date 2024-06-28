@@ -86,6 +86,10 @@ class CalorieTrackerScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.buttonColor,
                         foregroundColor: Colors.white,
+                        minimumSize: Size(100, 40),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        textStyle: TextStyle(fontSize: 14),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -104,6 +108,10 @@ class CalorieTrackerScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.buttonColor,
                         foregroundColor: Colors.white,
+                        minimumSize: Size(100, 40),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        textStyle: TextStyle(fontSize: 14),
                       ),
                     ),
                   ],
@@ -127,6 +135,10 @@ class CalorieTrackerScreen extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.buttonColor,
                       foregroundColor: Colors.white,
+                      minimumSize: Size(100, 40),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      textStyle: TextStyle(fontSize: 14),
                     ),
                   ),
                 ),

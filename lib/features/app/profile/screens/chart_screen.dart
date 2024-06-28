@@ -72,7 +72,7 @@ class _FirestoreBarChartState extends State<FirestoreBarChart> {
             BarChartRodData(
               toY: calories,
               color: AppColors.primaryColor,
-              width: 14,
+              width: 5,
               borderRadius: BorderRadius.zero,
               backDrawRodData: BackgroundBarChartRodData(
                 show: true,
@@ -83,7 +83,7 @@ class _FirestoreBarChartState extends State<FirestoreBarChart> {
             BarChartRodData(
               toY: water,
               color: AppColors.secondaryColor,
-              width: 14,
+              width: 5,
               borderRadius: BorderRadius.zero,
               backDrawRodData: BackgroundBarChartRodData(
                 show: true,
@@ -132,7 +132,7 @@ class _FirestoreBarChartState extends State<FirestoreBarChart> {
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 12,
+                            fontSize: 11,
                           ),
                         );
                       },
@@ -145,7 +145,7 @@ class _FirestoreBarChartState extends State<FirestoreBarChart> {
                         const style = TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 14,
+                          fontSize: 11,
                         );
                         Widget text;
                         switch (value.toInt()) {
@@ -195,6 +195,16 @@ class _FirestoreBarChartState extends State<FirestoreBarChart> {
                           child: text,
                         );
                       },
+                    ),
+                  ),
+                  topTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                      showTitles: false,
+                    ),
+                  ),
+                  rightTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                      showTitles: false,
                     ),
                   ),
                 ),
