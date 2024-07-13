@@ -137,30 +137,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.17.2"
-  firebase_storage:
-    dependency: "direct main"
-    description:
-      name: firebase_storage
-      sha256: "01fdcef335d2c86a265e9eb3c5b3b489ddc5589e7fc18a74df84b31be9f0c15b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "12.1.0"
-  firebase_storage_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_storage_platform_interface
-      sha256: "8fdbfc63af3441434f33a420a304a670b464ff71b8f12fccc80accba1378ca3b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.1.25"
-  firebase_storage_web:
-    dependency: transitive
-    description:
-      name: firebase_storage_web
-      sha256: bb9a387ae26bf7358e118f191ee22167b30217cad551184592cc73e7f73bd470
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.9.10"
   fl_chart:
     dependency: "direct main"
     description:
@@ -174,6 +150,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_colorpicker:
+    dependency: "direct main"
+    description:
+      name: flutter_colorpicker
+      sha256: "969de5f6f9e2a570ac660fb7b501551451ea2a1ab9e2097e89475f60e07816ea"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -192,14 +176,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  http:
-    dependency: transitive
-    description:
-      name: http
-      sha256: "761a297c042deedc1ffbb156d6e2af13886bb305c2a343a4d972504cd67dd938"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.1"
   http_parser:
     dependency: transitive
     description:
@@ -272,6 +248,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.12.0"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   path:
     dependency: transitive
     description:
@@ -288,6 +272,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
+  provider:
+    dependency: "direct main"
+    description:
+      name: provider
+      sha256: c8a055ee5ce3fd98d6fc872478b03823ffdb448699c6ebdbbc71d59b596fd48c
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.2"
   simple_gesture_detector:
     dependency: transitive
     description:

@@ -59,7 +59,7 @@ class ViewMealsScreen extends StatelessWidget {
             if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
               return Center(
                 child: Text(
-                  'No meals available',
+                  'Sem refeições adicionadas hoje.',
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Colors.white,

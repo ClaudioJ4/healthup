@@ -7,6 +7,9 @@ class AppColors {
   static const Color secondaryColor =
       Color.fromARGB(255, 74, 162, 210); // Cor azul
 
+  static const Color thirdColor =
+      Color.fromARGB(255, 74, 210, 135); // Cor verde
+
   static const Color backgroundColor = Colors.black; // Cor de fundo
 
   static const Color secondBackgroundColor =
