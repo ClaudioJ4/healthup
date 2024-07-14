@@ -1,4 +1,4 @@
-// ignore_for_file: use_super_parameters, prefer_const_constructors
+// ignore_for_file: use_super_parameters, prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -53,30 +53,17 @@ class ExerciseList extends StatelessWidget {
 
   String _convertTo24HourFormat(String time12h) {
     try {
-      // Remover espaços em branco extras
-      time12h = time12h.trim();
+      // Remover espaços em branco adicionais e caracteres invisíveis
+      String cleanedTime =
+          time12h.replaceAll(RegExp(r'[^\x20-\x7E]'), '').trim();
 
-      // Tratar alguns casos específicos como "12:00 AM" e "12:00 PM"
-      if (time12h.endsWith(' AM') || time12h.endsWith(' PM')) {
-        time12h =
-            time12h.substring(0, time12h.length - 3); // Remover " AM" ou " PM"
-      }
+      // Formato de entrada: 12h (e.g., "02:30 PM")
+      DateFormat format12h = DateFormat.jm(); // Formato 12h
+      DateTime dateTime = format12h.parse(cleanedTime);
 
-      // Converter para maiúsculas para garantir que AM/PM esteja em maiúsculas
-      time12h = time12h.toUpperCase();
-
-      // Remover caracteres não numéricos, exceto ":" e "AM/PM"
-      time12h = time12h.replaceAll(RegExp(r'[^0-9:APM]+'), '');
-
-      // Criar um DateFormat para parsear o horário de 12h
-      DateFormat format12h = DateFormat('h:mm a');
-      DateTime dateTime = format12h.parse(time12h);
-
-      // Criar um DateFormat para formatar o horário para 24h
+      // Formato de saída: 24h (e.g., "14:30")
       DateFormat format24h = DateFormat('HH:mm');
-      String formattedTime = format24h.format(dateTime);
-
-      return formattedTime;
+      return format24h.format(dateTime);
     } catch (e) {
       print('Erro ao converter o horário: $e');
       return time12h; // Retornar o horário original em caso de erro
