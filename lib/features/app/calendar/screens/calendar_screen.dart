@@ -2,54 +2,51 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:healthup/features/auth/front/pages/login_page.dart';
 import 'package:provider/provider.dart';
 import 'package:healthup/constants/front_constants.dart';
 import 'package:healthup/features/app/calendar/widgets/calendar_widget.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:healthup/features/auth/front/pages/login_page.dart';
 
 class CalendarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => EventProvider(),
-      child: Scaffold(
-        appBar: AppBar(
-            backgroundColor: AppColors.secondBackgroundColor,
-            title: Text(
-              'Calendário de Exercícios',
-              style: TextStyle(color: Colors.white),
-            ),
-            iconTheme: IconThemeData(color: Colors.white),
-            // Título da AppBar
-            actions: [
-              IconButton(
-                icon: Icon(Icons.logout), // Ícone de logout
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LoginPage(),
-                    ),
-                  );
-                },
-              ),
-            ]),
-        body: Container(
-          color: AppColors.backgroundColor,
-          child: ExerciseCalendarWidget(),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.secondBackgroundColor,
+        title: Text(
+          'Calendário de Exercícios',
+          style: TextStyle(color: Colors.white),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _showAddEventDialog(context);
-          },
-          backgroundColor: AppColors.thirdColor,
-          tooltip: 'Adicionar Exercício',
-          child: Icon(Icons.add),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        iconTheme: IconThemeData(color: Colors.white),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginPage(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
+      body: Container(
+        color: AppColors.backgroundColor,
+        child: ExerciseCalendarWidget(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _showAddEventDialog(context);
+        },
+        backgroundColor: AppColors.thirdColor,
+        tooltip: 'Adicionar Exercício',
+        child: Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
