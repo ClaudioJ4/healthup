@@ -1,15 +1,14 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:healthup/features/app/calendar/screens/calendar_screen.dart';
 import 'package:healthup/features/app/calories_tracker/screens/calorie_tracker_screen.dart';
 import 'package:healthup/features/auth/front/pages/login_page.dart';
 import 'package:healthup/constants/front_constants.dart';
 import 'package:healthup/features/app/water_tracker/screens/water_tracker_screen.dart';
 import 'package:healthup/features/app/profile/screens/profile_screen.dart';
-import 'package:healthup/features/app/calendar/screens/calendar_screen.dart';
-import 'package:healthup/features/app/calendar/widgets/calendar_widget.dart';
+import 'package:healthup/features/app/calendar/widgets/exercise_list_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key});
@@ -71,103 +70,107 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: ChangeNotifierProvider(
-        create: (_) => EventProvider(),
-        child: Container(
-          padding: const EdgeInsets.only(
-            top: 20,
-            left: 10,
-            right: 10,
-          ),
-          color: AppColors.backgroundColor,
-          child: ListView(
-            children: [
-              Text(
-                "Health UP!",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
+      body: Container(
+        padding: const EdgeInsets.only(
+          top: 20,
+          left: 10,
+          right: 10,
+        ),
+        color: AppColors.backgroundColor,
+        child: ListView(
+          children: [
+            Text(
+              "Health UP!",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
-              SizedBox(
-                height: 20,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: const EdgeInsets.all(12.0),
+              decoration: BoxDecoration(
+                color: AppColors.secondBackgroundColor,
+                borderRadius: BorderRadius.circular(15),
               ),
-              Container(
-                padding: const EdgeInsets.all(12.0),
-                decoration: BoxDecoration(
-                  color: AppColors.secondBackgroundColor,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: user != null
-                    ? CalorieTrackerScreen(userId: user.uid)
-                    : Center(
-                        child: Text(
-                          'No data available',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                padding: const EdgeInsets.all(12.0),
-                decoration: BoxDecoration(
-                  color: AppColors.secondBackgroundColor,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: user != null
-                    ? WaterTrackerScreen(userId: user.uid)
-                    : Center(
-                        child: Text(
-                          'No data available',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                padding: const EdgeInsets.all(12.0),
-                decoration: BoxDecoration(
-                  color: AppColors.secondBackgroundColor,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Column(
-                  children: [
-                    ExerciseCalendarWidget(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CalendarPage(),
-                          ),
-                        );
-                      },
-                      icon: Icon(Icons.add, color: Colors.white),
-                      label: Text('Adicionar Exercícios',
-                          style: TextStyle(color: Colors.white)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.buttonColor,
-                        foregroundColor: Colors.white,
-                        minimumSize: Size(100, 40),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        textStyle: TextStyle(fontSize: 14),
+              child: user != null
+                  ? CalorieTrackerScreen(userId: user.uid)
+                  : Center(
+                      child: Text(
+                        'No data available',
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
-                  ],
-                ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: const EdgeInsets.all(12.0),
+              decoration: BoxDecoration(
+                color: AppColors.secondBackgroundColor,
+                borderRadius: BorderRadius.circular(15),
               ),
-            ],
-          ),
+              child: user != null
+                  ? WaterTrackerScreen(userId: user.uid)
+                  : Center(
+                      child: Text(
+                        'No data available',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: const EdgeInsets.all(12.0),
+              decoration: BoxDecoration(
+                color: AppColors.secondBackgroundColor,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Exercicios marcados para hoje:",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  user != null ? ExerciseList(userId: user.uid) : SizedBox(),
+                  SizedBox(height: 20),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CalendarPage(),
+                        ),
+                      );
+                    },
+                    icon: Icon(Icons.add, color: Colors.white),
+                    label: Text('Ver Calendário',
+                        style: TextStyle(color: Colors.white)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.buttonColor,
+                      foregroundColor: Colors.white,
+                      minimumSize: Size(100, 40),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      textStyle: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
