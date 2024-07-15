@@ -25,7 +25,7 @@ class ExerciseList extends StatelessWidget {
         if (!snapshot.hasData || !snapshot.data!.exists) {
           return Center(
             child: Text(
-              'No exercises scheduled for today',
+              'Sem exercícios marcados hoje',
               style: TextStyle(color: Colors.white),
             ),
           );
@@ -65,7 +65,6 @@ class ExerciseList extends StatelessWidget {
       DateFormat format24h = DateFormat('HH:mm');
       return format24h.format(dateTime);
     } catch (e) {
-      print('Erro ao converter o horário: $e');
       return time12h; // Retornar o horário original em caso de erro
     }
   }

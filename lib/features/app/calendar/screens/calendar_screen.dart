@@ -89,93 +89,124 @@ class _CalendarPageState extends State<CalendarPage> {
   void initState() {
     super.initState();
     initializeDateFormatting('pt_BR', null);
-    _loadEventsFromFirebase(); // Carregar eventos do Firebase ao inicializar a página
+    _loadEventsFromFirebase();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadEventsFromFirebase(); // Carregar eventos do Firebase ao reconstruir a página
   }
 
   void _showAddEventDialog() {
-    showDialog(
+    showModalBottomSheet(
       context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: AppColors.secondBackgroundColor,
-        title:
-            Text('Adicionar Exercício', style: TextStyle(color: Colors.white)),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: _eventController,
-              decoration: InputDecoration(
-                labelText: 'Nome do Exercício',
-                labelStyle: TextStyle(color: Colors.white),
-              ),
-              style: TextStyle(color: Colors.white),
-            ),
-            SizedBox(height: 20),
-            BlockPicker(
-              pickerColor: _selectedColor,
-              onColorChanged: (color) {
-                setState(() {
-                  _selectedColor = color;
-                });
-              },
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                showTimePicker(
-                  context: context,
-                  initialTime: _selectedTime,
-                  builder: (context, child) {
-                    return MediaQuery(
-                      data: MediaQuery.of(context)
-                          .copyWith(alwaysUse24HourFormat: true),
-                      child: child!,
-                    );
-                  },
-                ).then((value) {
-                  if (value != null) {
-                    setState(() {
-                      _selectedTime = value;
-                    });
-                  }
-                });
-              },
-              child:
-                  Text('Selecionar Horário: ${_selectedTime.format(context)}'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.buttonColor,
-                foregroundColor: Colors.white,
-                minimumSize: Size(100, 40),
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                textStyle: TextStyle(fontSize: 14),
-              ),
-            ),
-          ],
+      isScrollControlled: true,
+      backgroundColor: AppColors.secondBackgroundColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Cancelar', style: TextStyle(color: Colors.white)),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.buttonColor,
-              foregroundColor: Colors.white,
-              minimumSize: Size(100, 40),
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              textStyle: TextStyle(fontSize: 14),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Adicionar Exercício',
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(height: 20),
+                TextField(
+                  controller: _eventController,
+                  decoration: InputDecoration(
+                    labelText: 'Nome do Exercício',
+                    labelStyle: TextStyle(color: Colors.white),
+                  ),
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(height: 20),
+                BlockPicker(
+                  pickerColor: _selectedColor,
+                  onColorChanged: (color) {
+                    setState(() {
+                      _selectedColor = color;
+                    });
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    showTimePicker(
+                      context: context,
+                      initialTime: _selectedTime,
+                      builder: (context, child) {
+                        return MediaQuery(
+                          data: MediaQuery.of(context)
+                              .copyWith(alwaysUse24HourFormat: false),
+                          child: child!,
+                        );
+                      },
+                    ).then((value) {
+                      if (value != null) {
+                        setState(() {
+                          _selectedTime = value;
+                        });
+                      }
+                    });
+                  },
+                  child: Text(
+                      'Selecionar Horário: ${_selectedTime.format(context)}'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.buttonColor,
+                    foregroundColor: Colors.white,
+                    minimumSize: Size(100, 40),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    textStyle: TextStyle(fontSize: 14),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text('Cancelar',
+                          style: TextStyle(color: Colors.white)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.buttonColor,
+                        foregroundColor: Colors.white,
+                        minimumSize: Size(100, 40),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        textStyle: TextStyle(fontSize: 14),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    ElevatedButton(
+                      onPressed: _addEvent,
+                      child: Text('Adicionar'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.buttonColor,
+                        foregroundColor: Colors.white,
+                        minimumSize: Size(100, 40),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        textStyle: TextStyle(fontSize: 14),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
-          ElevatedButton(
-            onPressed: _addEvent,
-            child: Text('Adicionar'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.buttonColor,
-              foregroundColor: Colors.white,
-              minimumSize: Size(100, 40),
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              textStyle: TextStyle(fontSize: 14),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -184,7 +215,7 @@ class _CalendarPageState extends State<CalendarPage> {
     final now = DateTime.now();
     final dt = DateTime(
         now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
-    final format = DateFormat.Hm('pt_BR');
+    final format = DateFormat('h:mm a');
     return format.format(dt);
   }
 
@@ -270,15 +301,13 @@ class _CalendarPageState extends State<CalendarPage> {
                   ),
                 ),
                 calendarBuilders: CalendarBuilders(
-                  // Construtor padrão para dias normais
                   defaultBuilder: (context, day, focusedDay) {
                     return Center(
                       child: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: Colors
-                                .transparent, // Cor da borda transparente para dias normais
+                            color: Colors.transparent,
                           ),
                         ),
                         child: Center(
@@ -290,16 +319,14 @@ class _CalendarPageState extends State<CalendarPage> {
                       ),
                     );
                   },
-                  // Construtor para o dia de hoje
                   todayBuilder: (context, day, focusedDay) {
                     return Center(
                       child: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: Colors
-                                .white, // Cor da borda vermelha para o dia de hoje
-                            width: 2.0, // Largura da borda
+                            color: Colors.white,
+                            width: 2.0,
                           ),
                         ),
                         child: Center(
@@ -313,16 +340,14 @@ class _CalendarPageState extends State<CalendarPage> {
                       ),
                     );
                   },
-                  // Construtor para o dia selecionado
                   selectedBuilder: (context, day, focusedDay) {
                     return Center(
                       child: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: AppColors
-                                .thirdColor, // Cor da borda azul para o dia selecionado
-                            width: 2.0, // Largura da borda
+                            color: AppColors.thirdColor,
+                            width: 2.0,
                           ),
                         ),
                         child: Center(
