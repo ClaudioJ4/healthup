@@ -53,19 +53,16 @@ class ExerciseList extends StatelessWidget {
 
   String _convertTo24HourFormat(String time12h) {
     try {
-      // Remover espaços em branco adicionais e caracteres invisíveis
       String cleanedTime =
           time12h.replaceAll(RegExp(r'[^\x20-\x7E]'), '').trim();
 
-      // Formato de entrada: 12h (e.g., "02:30 PM")
-      DateFormat format12h = DateFormat.jm(); // Formato 12h
+      DateFormat format12h = DateFormat.jm();
       DateTime dateTime = format12h.parse(cleanedTime);
 
-      // Formato de saída: 24h (e.g., "14:30")
       DateFormat format24h = DateFormat('HH:mm');
       return format24h.format(dateTime);
     } catch (e) {
-      return time12h; // Retornar o horário original em caso de erro
+      return time12h;
     }
   }
 }

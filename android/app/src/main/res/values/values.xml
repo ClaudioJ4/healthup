@@ -1,9 +1,13 @@
 <resources>
-    <string name="default_web_client_id" translatable="false">N/A</string>
-    <string name="firebase_database_url" translatable="false">N/A</string>
-    <string name="gcm_defaultSenderId" translatable="false">775917246848</string>
-    <string name="google_api_key" translatable="false">AIzaSyBmpfJQHy5KlMMSPXTDyyVSxpeIa1esNZw</string>
-    <string name="google_app_id" translatable="false">1:775917246848:android:e2f273ea326fa6bd1d0965</string>
-    <string name="google_crash_reporting_api_key" translatable="false">N/A</string>
-    <string name="project_id" translatable="false">health-up-9fa76</string>
+    <!-- Outras definições de recursos -->
+
+    <!-- Remova ou comente essas linhas -->
+    <!-- <string name="gcm_defaultSenderId" translatable="false">775917246848</string> -->
+    <!-- <string name="google_api_key" translatable="false">AIzaSyBmpfJQHy5KlMMSPXTDyyVSxpeIa1esNZw</string> -->
+    <!-- <string name="google_app_id" translatable="false">1:775917246848:android:e2f273ea326fa6bd1d0965</string> -->
+    <!-- <string name="google_crash_reporting_api_key" translatable="false">N/A</string> -->
+    <!-- <string name="project_id" translatable="false">health-up-9fa76</string> -->
+
+    <!-- Outras definições de recursos -->
 </resources>
+
